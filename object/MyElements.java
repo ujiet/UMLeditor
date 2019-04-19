@@ -2,9 +2,8 @@ package object;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.io.Serializable;
 
-public abstract class MyElements implements Serializable {
+public abstract class MyElements {
 	protected Point coor;
 	protected int Index;
 	protected int depth;
@@ -18,7 +17,6 @@ public abstract class MyElements implements Serializable {
 	protected String Name;
 	
 	public ArrayList<MyElements> Groupedby;
-	private ArrayList<MyLines> Lines;
 	
 	public abstract void update(Graphics g);
 	public abstract boolean clickPointInArea(Point clickPoint);
@@ -37,7 +35,7 @@ public abstract class MyElements implements Serializable {
 	public void setSelected(boolean flag) {Selected = flag;}
 	public boolean isMoved() {return Moved;}
 	public void setMoved(boolean flag) {Moved = flag;}
-	public ArrayList getGroupedby() {return Groupedby;}
+	public ArrayList<MyElements> getGroupedby() {return Groupedby;}
 	public boolean isComposited() {return Composited;}
 	public void setComposited(boolean flag) {Composited = flag;}
 	public int getClickWidth() {return ClickWidth;}
@@ -80,5 +78,21 @@ public abstract class MyElements implements Serializable {
 		int y = clickPoint.y - coor.y;
 		
 		return (height*x + width*y - height*width > 0);
+	}
+	
+	public Point getRightPoint() {
+		return (new Point(coor.x+width, coor.y+height/2));
+	}
+	
+	public Point getLeftPoint() {
+		return (new Point(coor.x, coor.y+height/2));
+	}
+	
+	public Point getUpPoint() {
+		return (new Point(coor.x+width/2, coor.y));
+	}
+	
+	public Point getDownPoint() {
+		return (new Point(coor.x+width/2, coor.y+height));
 	}
 }

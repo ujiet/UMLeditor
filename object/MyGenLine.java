@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 @SuppressWarnings("serial")
 public class MyGenLine extends MyLines {
 
-	MyGenLine() {}
+	public MyGenLine() {}
 	
 	@Override
 	public void update(Graphics g) {

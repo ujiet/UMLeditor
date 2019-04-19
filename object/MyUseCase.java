@@ -1,10 +1,7 @@
 package object;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
-
-import javax.swing.*;
 
 public class MyUseCase extends MyElements {
 	
@@ -21,7 +18,7 @@ public class MyUseCase extends MyElements {
 		setMoved(false);
 		setName("UseCase"+i);
 		setComposited(false);
-		Groupedby = new ArrayList();
+		Groupedby = new ArrayList<MyElements>();
 		setFocus();	
 	}
 	

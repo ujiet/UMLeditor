@@ -3,9 +3,6 @@ package object;
 import java.awt.*;
 import java.util.ArrayList;
 
-import javax.lang.model.util.Elements;
-import javax.swing.*;
-
 public class MyComposite extends MyElements{
 	
 	private ArrayList<Integer> Components;

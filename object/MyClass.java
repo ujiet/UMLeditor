@@ -3,8 +3,6 @@ package object;
 import java.awt.*;
 import java.util.ArrayList;
 
-import javax.swing.*;
-
 public class MyClass extends MyElements {
 	
 	public MyClass(Point clickPoint, int i) {
@@ -17,7 +15,7 @@ public class MyClass extends MyElements {
 		setMoved(false);
 		setName("Class"+i);
 		setComposited(false);
-		Groupedby = new ArrayList();
+		Groupedby = new ArrayList<MyElements>();
 	}
 	
 	@Override

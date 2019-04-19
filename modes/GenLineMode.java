@@ -1,37 +1,35 @@
 package modes;
 
 import java.awt.Point;
-import java.util.ArrayList;
 import object.*;
-
-import object.MyElements;
 
 public class GenLineMode {
 	private GenLineMode() {}
 	
-	public static void press(Point clickPoint, ArrayList<MyElements> elements) {
+	public static void press(Point clickPoint, MyObjects Objects) {
 
-		MyElements e = ((MyArrayList) elements).getToppestClickedObject(clickPoint);
+		MyElements e = Objects.getToppestClickedElement(clickPoint);
 		
-		if (e != null) {				
+		if (e != null) {
 		
 			if (e.clickInUpRight(clickPoint) && e.clickInDownRight(clickPoint))  // right
-				
+				Objects.setTempLineStartPoint(e.getRightPoint());
 			if (!e.clickInUpRight(clickPoint) && e.clickInDownRight(clickPoint))  // down
-				System.out.println("Click in -down- of " + e.getName());
+				Objects.setTempLineStartPoint(e.getDownPoint());
 			if (!e.clickInUpRight(clickPoint) && !e.clickInDownRight(clickPoint))  // left
-				System.out.println("Click in -left- of " + e.getName());
+				Objects.setTempLineStartPoint(e.getLeftPoint());
 			if (e.clickInUpRight(clickPoint) && !e.clickInDownRight(clickPoint))  // up
-				System.out.println("Click in -up- of " + e.getName());
-							
+				Objects.setTempLineStartPoint(e.getUpPoint());
+			
+			System.out.println("StartPoint -> " + Objects.getTempLine().getStartPoint());
 		} 		
 	}
 	
-	public static void drag(Point clickPoint, Point dragPoint, ArrayList<MyElements> elements) {
+	public static void drag(Point clickPoint, Point dragPoint, MyObjects Objects) {
 		
 	}
 	
-	public static void release(ArrayList<MyElements> elements) {
+	public static void release(MyObjects Objects) {
 		
 	}
 }

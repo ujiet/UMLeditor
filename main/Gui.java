@@ -1,11 +1,9 @@
 package main;
 
 import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.*;
 
-import object.MyArrayList;
-import object.MyElements;
+import object.MyObjects;
 
 public class Gui {
 	private static final int WIDTH = 960;
@@ -13,11 +11,11 @@ public class Gui {
 	private static String CurrentMode;
 	private static DrawPanel drawPanel;
 	private static ButtonPanel buttonPanel;
-	public static ArrayList<MyElements> elements;
+	private MyObjects Objects;
 	
 	Gui() {
 		JFrame fr = new JFrame("UML editor");
-		elements = new MyArrayList();
+		Objects = new MyObjects();
 		
 		fr.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		fr.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -25,10 +23,10 @@ public class Gui {
 		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fr.setLocationRelativeTo(null);
 
-        fr.setJMenuBar(new MenuBarPanel(this, elements));    
+        fr.setJMenuBar(new MenuBarPanel(this, Objects));    
 		fr.setLayout(new BorderLayout());
 		
-		drawPanel = new DrawPanel(this, elements);
+		drawPanel = new DrawPanel(this, Objects);
 		buttonPanel = new ButtonPanel(this);
 		
 		fr.add(buttonPanel, BorderLayout.WEST);

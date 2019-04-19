@@ -8,8 +8,9 @@ import object.*;
 public class SelectMode extends BasicMode {
 	private SelectMode() {}
 	
-	public static void clickSelect(Point clickPoint, ArrayList<MyElements> elements) {
+	public static void clickSelect(Point clickPoint, MyObjects Objects) {
 		boolean SelectFinished = false;
+		ArrayList<MyElements> elements = Objects.getElements();
 		
 		for (int i = elements.size()-1; i >= 0; i--) {
 			
@@ -24,18 +25,18 @@ public class SelectMode extends BasicMode {
 		}
 	}
 	
-	public static void pressSelect(Point clickPoint, ArrayList<MyElements> elements) {
+	public static void pressSelect(Point clickPoint, MyObjects Objects) {
 		
-		MyElements selection = ((MyArrayList) elements).getSelectionRect();
+		MyElements selection = Objects.getSelectionRect();
 
 		selection.setCoor(clickPoint.x, clickPoint.y);
 	}
 	
-	public static void dragSelect(Point clickPoint, Point dragPoint, ArrayList<MyElements> elements) {
+	public static void dragSelect(Point clickPoint, Point dragPoint, MyObjects Objects) {
 		
-		if (!((MyArrayList) elements).isMoving()) {
+		if (!Objects.isMoving()) {
 		
-			MyElements selection = ((MyArrayList) elements).getSelectionRect();
+			MyElements selection = Objects.getSelectionRect();
 			
 			selection.setCoor(Math.min(clickPoint.x, dragPoint.x), Math.min(clickPoint.y, dragPoint.y));
 			selection.setWidth(Math.max(clickPoint.x, dragPoint.x) - selection.getCoor().x);
@@ -44,11 +45,11 @@ public class SelectMode extends BasicMode {
 
 	}
 	
-	public static void releaseSelect(ArrayList<MyElements> elements) {
+	public static void releaseSelect(MyObjects Objects) {
 		
-		MyElements selection = ((MyArrayList) elements).getSelectionRect();
+		MyElements selection = Objects.getSelectionRect();
 		
-		for (MyElements e: elements) {
+		for (MyElements e: Objects.getElements()) {
 			e.checkInSelection(selection);
 		}
 		
@@ -57,44 +58,41 @@ public class SelectMode extends BasicMode {
 		
 	}
 	
-	public static void pressMove(Point clickPoint, ArrayList<MyElements> list) {
+	public static void pressMove(Point clickPoint, MyObjects Objects) {
 		
-		MyArrayList elements = (MyArrayList) list;
-		MyElements TopObject = elements.getToppestClickedObject(clickPoint);
+		MyElements TopObject = Objects.getToppestClickedElement(clickPoint);
 		
 		if (TopObject != null) {
 			TopObject.setMoved(true);			
 			if (TopObject.isComposited()) {
 				for (Integer i:((MyComposite) TopObject).getComponents()) {
 					//System.out.print(e.getName()+" ");
-					elements.get(i).setMoved(true);
+					Objects.getElements().get(i).setMoved(true);
 				}
 			}
-			elements.setMoving(true);
+			Objects.setMoving(true);
 			//System.out.println();
 		}
 	}
 	
-	public static void dragMove(Point clickPoint, Point dragPoint, ArrayList<MyElements> list) {
-		MyArrayList elements = (MyArrayList) list;
+	public static void dragMove(Point clickPoint, Point dragPoint, MyObjects Objects) {
 		
-		if (elements.isMoving()) {
-			for (MyElements e: elements) {
+		if (Objects.isMoving()) {
+			for (MyElements e: Objects.getElements()) {
 				if (e.isMoved())
 					e.setCoor(dragPoint.x - e.getClickWidth(), dragPoint.y - e.getClickHeight());
 			}
 		}
 	}
 	
-	public static void releaseMove(ArrayList<MyElements> list) {
-		MyArrayList elements = (MyArrayList) list;
+	public static void releaseMove(MyObjects Objects) {
 		
-		if (elements.isMoving()) {
-			for (MyElements e: elements) 
+		if (Objects.isMoving()) {
+			for (MyElements e: Objects.getElements()) 
 				e.setMoved(false);
 		}
 		
-		elements.setMoving(false);
+		Objects.setMoving(false);
 	}
 	
 	//e.setCoor(dragPoint.x - e.getClickWidth(), dragPoint.y - e.getClickHeight());

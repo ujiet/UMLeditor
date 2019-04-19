@@ -1,21 +1,19 @@
 package main;
 
-import java.awt.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
-
 import object.*;
 
+@SuppressWarnings("serial")
 public class MenuBarPanel extends JMenuBar {
 	
-	private static MyArrayList elements;
+	private static MyObjects Objects;
 	private Gui fr;
 	
-	public MenuBarPanel(Gui MainFrame, ArrayList<MyElements> ElementList) {
+	public MenuBarPanel(Gui MainFrame, MyObjects obj) {
 		
 		fr = MainFrame;
-		elements = (MyArrayList) ElementList;
+		Objects = obj;
 		
 	    JMenu FileMenu = new JMenu("File");
 	    JMenu EditMenu = new JMenu("Edit");
@@ -50,14 +48,15 @@ public class MenuBarPanel extends JMenuBar {
 	}
 	
 	public void doGroup() {	
-		if (elements.getSelectedAmount() > 1) {
-			elements.add(new MyComposite(elements));
+		if (Objects.getSelectedAmount() > 1) {
+			Objects.getElements().add(new MyComposite(Objects.getElements()));
 		} 
 	}
 	
 	public void doUngroup() {
-		if (elements.getSelectedAmount() == 1) {
-			int Index = elements.getFirstSelectedIndex();
+		if (Objects.getSelectedAmount() == 1) {
+			int Index = Objects.getFirstSelectedIndex();
+			ArrayList<MyElements> elements = Objects.getElements();
 			if (elements.get(Index).isComposited()) {			
 				((MyComposite) elements.get(Index)).getComponents().forEach(e -> {
 					if (!elements.get(e).Groupedby.isEmpty())
@@ -73,10 +72,10 @@ public class MenuBarPanel extends JMenuBar {
 	public void doChangeName() {
     	int SelectedIndex = 0;
     	
-		if (elements.getSelectedAmount() == 1) {
-			SelectedIndex = elements.getFirstSelectedIndex();    			
+		if (Objects.getSelectedAmount() == 1) {
+			SelectedIndex = Objects.getFirstSelectedIndex();    			
 			String NewName = JOptionPane.showInputDialog("Enter New Object Name"); 
-			elements.get(SelectedIndex).setName(NewName);
+			Objects.getElements().get(SelectedIndex).setName(NewName);
 		}
 	}
 
