@@ -95,4 +95,48 @@ public abstract class MyElements {
 	public Point getDownPoint() {
 		return (new Point(coor.x+width/2, coor.y+height));
 	}
+	
+	public Point getConnectPoint(Point clickPoint) {
+		
+		if (clickInUpRight(clickPoint) && clickInDownRight(clickPoint))  // right
+			return getRightPoint();
+		if (!clickInUpRight(clickPoint) && clickInDownRight(clickPoint))  // down
+			return getDownPoint();
+		if (!clickInUpRight(clickPoint) && !clickInDownRight(clickPoint))  // left
+			return getLeftPoint();
+		if (clickInUpRight(clickPoint) && !clickInDownRight(clickPoint))  // up
+			return getUpPoint();
+		
+		return null;
+	}	
+	
+	public Point getConnectPoint(String s) {
+		
+		switch (s) {
+			case "Right":
+				return getRightPoint();
+			case "Left":
+				return getLeftPoint();
+			case "Up":
+				return getUpPoint();
+			case "Down":
+				return getDownPoint();
+			default:
+				return null;
+		}
+	}
+	
+	public String getConnectDir(Point clickPoint) {
+		
+		if (clickInUpRight(clickPoint) && clickInDownRight(clickPoint))  // right
+			return "Right";
+		if (!clickInUpRight(clickPoint) && clickInDownRight(clickPoint))  // down
+			return "Down";
+		if (!clickInUpRight(clickPoint) && !clickInDownRight(clickPoint))  // left
+			return "Left";
+		if (clickInUpRight(clickPoint) && !clickInDownRight(clickPoint))  // up
+			return "Up";
+		
+		return null;
+	}
 }

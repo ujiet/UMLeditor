@@ -11,25 +11,31 @@ public class GenLineMode {
 		MyElements e = Objects.getToppestClickedElement(clickPoint);
 		
 		if (e != null) {
-		
-			if (e.clickInUpRight(clickPoint) && e.clickInDownRight(clickPoint))  // right
-				Objects.setTempLineStartPoint(e.getRightPoint());
-			if (!e.clickInUpRight(clickPoint) && e.clickInDownRight(clickPoint))  // down
-				Objects.setTempLineStartPoint(e.getDownPoint());
-			if (!e.clickInUpRight(clickPoint) && !e.clickInDownRight(clickPoint))  // left
-				Objects.setTempLineStartPoint(e.getLeftPoint());
-			if (e.clickInUpRight(clickPoint) && !e.clickInDownRight(clickPoint))  // up
-				Objects.setTempLineStartPoint(e.getUpPoint());
 			
-			System.out.println("StartPoint -> " + Objects.getTempLine().getStartPoint());
+			Objects.createTempLine(new MyGenLine(clickPoint, e));		
+			Objects.getLines().add(Objects.getTempLine());
 		} 		
 	}
 	
 	public static void drag(Point clickPoint, Point dragPoint, MyObjects Objects) {
 		
+		Objects.getTempLine().setEndPoint(dragPoint);
+		
 	}
 	
-	public static void release(MyObjects Objects) {
+	public static void release(Point clickPoint, Point releasePoint, MyObjects Objects) {
 		
+		Objects.getTempLine().setEnd(releasePoint, Objects.getToppestClickedElement(releasePoint));
+		
+		MyElements StartElement = Objects.getTempLine().getStartElement();
+		MyElements EndElement = Objects.getTempLine().getEndElement();
+		
+		if (Objects.getTempLine() != null && StartElement != null && StartElement != EndElement) {
+			Objects.clearTempLine();
+		} else {
+			Objects.getLines().remove(Objects.getTempLine());
+		}
+		
+		System.out.println("Objects.Lines -> " + Objects.getLines().toString());
 	}
 }

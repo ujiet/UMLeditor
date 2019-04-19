@@ -54,7 +54,7 @@ public class MouseEvents {
 		}
 	}
 	
-	public static void release(String CurrentMode, MyObjects Objects) {
+	public static void release(String CurrentMode, Point clickPoint, Point releasePoint, MyObjects Objects) {
 		
 		switch (CurrentMode) {
 			case "Select":
@@ -62,7 +62,7 @@ public class MouseEvents {
 				SelectMode.releaseSelect(Objects);
 				break;
 			case "GenLine":
-				GenLineMode.release(Objects);
+				GenLineMode.release(clickPoint, releasePoint, Objects);
 				break;
 			default:
 				break;

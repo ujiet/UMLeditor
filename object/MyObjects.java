@@ -48,6 +48,14 @@ public class MyObjects {
 		return TempLine;
 	}
 	
+	public void createTempLine(MyLines l) {
+		TempLine = l;
+	}
+	
+	public void clearTempLine() {
+		TempLine = null;
+	}
+	
 	public void setTempLineStartPoint(Point p) {
 		TempLine.setStartPoint(p);
 	}

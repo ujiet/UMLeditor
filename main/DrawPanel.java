@@ -42,7 +42,8 @@ public class DrawPanel extends JPanel {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				MouseEvents.release(fr.getCurrentMode(), Objects);
+				Point releasePoint = e.getPoint();
+				MouseEvents.release(fr.getCurrentMode(), clickPoint, releasePoint, Objects);
 				repaint();
 			}
 		};
@@ -64,8 +65,8 @@ public class DrawPanel extends JPanel {
 		}
 		
 		/* connection lines */		
-		for (MyLines e: Objects.getLines()) {
-			e.update(g);
+		for (MyLines l: Objects.getLines()) {
+			l.update(g);
 		}
 	}
 }
