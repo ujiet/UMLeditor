@@ -66,12 +66,10 @@ public class SelectMode extends BasicMode {
 			TopObject.setMoved(true);			
 			if (TopObject.isComposited()) {
 				for (Integer i:((MyComposite) TopObject).getComponents()) {
-					//System.out.print(e.getName()+" ");
 					Objects.getElements().get(i).setMoved(true);
 				}
 			}
 			Objects.setMoving(true);
-			//System.out.println();
 		}
 	}
 	
@@ -94,6 +92,4 @@ public class SelectMode extends BasicMode {
 		
 		Objects.setMoving(false);
 	}
-	
-	//e.setCoor(dragPoint.x - e.getClickWidth(), dragPoint.y - e.getClickHeight());
 }

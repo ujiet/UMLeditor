@@ -78,7 +78,6 @@ public class MyObjects {
 				return i;
 		return 0;
 	}
-
 	
 	public MyElements getToppestClickedElement(Point clickPoint) {
 		MyElements Top = null;

@@ -22,10 +22,11 @@ public class MyClass extends MyElements {
 	public void update(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		
+		int TextHeight = 20;
 		g2d.setPaint(Color.BLACK);
 		g2d.drawRect(coor.x, coor.y, width, height);
-		g2d.drawRect(coor.x, coor.y+height/3, width, height/3);
-		g2d.drawString(getName(), coor.x, coor.y);
+		g2d.drawLine(coor.x, coor.y+TextHeight, coor.x+width, coor.y+TextHeight);
+		g2d.drawString(getName(), coor.x+5, coor.y+TextHeight-4);
 		
 		if (isSelected()) 
 			toSelect(g);

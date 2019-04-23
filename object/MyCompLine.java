@@ -4,9 +4,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class MyGenLine extends MyLines {
+public class MyCompLine extends MyLines {
 
-	public MyGenLine(Point clickPoint, MyElements StartElement) {
+	public MyCompLine(Point clickPoint, MyElements StartElement) {
 		setStart(clickPoint, StartElement);
 	}
 	
@@ -26,14 +26,14 @@ public class MyGenLine extends MyLines {
 		double deg = getRadian(start, end);
 		Point p1 = getRotatedPoint(start, deg-Math.PI/6.0d, l);
 		Point p2 = getRotatedPoint(start, deg+Math.PI/6.0d, l);
-		Point ps = getRotatedPoint(start, deg, l*Math.sqrt(3)/2.0);
-			
-		/* Triangle */
-		g2d.drawLine(start.x, start.y, p1.x, p1.y);
-		g2d.drawLine(start.x, start.y, p2.x, p2.y);
-		g2d.drawLine(p2.x, p2.y, p1.x, p1.y);
+		Point ps = getRotatedPoint(start, deg, l*Math.sqrt(3));
+		//Point pc = getRotatedPoint(start, deg, l*Math.sqrt(3)/2.0);  // center of diamond
 		
-		g2d.drawLine(ps.x, ps.y, end.x, end.y);
+		int[] Xs = new int[] {start.x, p1.x, ps.x, p2.x};
+		int[] Ys = new int[] {start.y, p1.y, ps.y, p2.y};
 
+		g2d.drawPolygon(Xs, Ys, 4);
+		g2d.drawLine(ps.x, ps.y, end.x, end.y);
 	}
+	
 }

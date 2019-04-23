@@ -31,8 +31,14 @@ public class MouseEvents {
 				SelectMode.pressMove(clickPoint, Objects);
 				SelectMode.pressSelect(clickPoint, Objects);
 				break;
+			case "AssocLine":
+				AssocLineMode.press(clickPoint, Objects);
+				break;
 			case "GenLine":
 				GenLineMode.press(clickPoint, Objects);
+				break;
+			case "CompLine":
+				CompLineMode.press(clickPoint, Objects);
 				break;
 			default:
 				break;
@@ -46,8 +52,14 @@ public class MouseEvents {
 				SelectMode.dragMove(clickPoint, dragPoint, Objects);
 				SelectMode.dragSelect(clickPoint, dragPoint, Objects);
 				break;
+			case "AssocLine":
+				AssocLineMode.drag(clickPoint, dragPoint, Objects);
+				break;
 			case "GenLine":
 				GenLineMode.drag(clickPoint, dragPoint, Objects);
+				break;
+			case "CompLine":
+				CompLineMode.drag(clickPoint, dragPoint, Objects);
 				break;
 			default:
 				break;
@@ -61,8 +73,14 @@ public class MouseEvents {
 				SelectMode.releaseMove(Objects);
 				SelectMode.releaseSelect(Objects);
 				break;
+			case "AssocLine":
+				AssocLineMode.release(clickPoint, releasePoint, Objects);
+				break;
 			case "GenLine":
 				GenLineMode.release(clickPoint, releasePoint, Objects);
+				break;
+			case "CompLine":
+				CompLineMode.release(clickPoint, releasePoint, Objects);
 				break;
 			default:
 				break;

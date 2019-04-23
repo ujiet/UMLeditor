@@ -3,9 +3,9 @@ package modes;
 import java.awt.Point;
 import object.*;
 
-public class GenLineMode {
-	
-	private GenLineMode() {}
+public class CompLineMode {
+
+	private CompLineMode() {}
 	
 	public static void press(Point clickPoint, MyObjects Objects) {
 
@@ -13,11 +13,9 @@ public class GenLineMode {
 		
 		if (e != null) {
 			
-			Objects.createTempLine(new MyGenLine(clickPoint, e));		
+			Objects.createTempLine(new MyCompLine(clickPoint, e));		
 			Objects.getLines().add(Objects.getTempLine());
-		} else {
-			Objects.createTempLine(null);
-		}
+		} 		
 	}
 	
 	public static void drag(Point clickPoint, Point dragPoint, MyObjects Objects) {

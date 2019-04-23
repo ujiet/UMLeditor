@@ -45,5 +45,15 @@ public abstract class MyLines {
 		setEndDir(EndElement.getConnectDir(clickPoint));
 		setDragged(false);
 	}
-
+	
+	public double getRadian(Point s, Point e) {
+	    return Math.atan2(e.y-s.y, e.x-s.x);
+	}
+	
+	public Point getRotatedPoint(Point p, double deg, double l) {
+		int x = (int) Math.round(p.x+l*Math.cos(deg));
+		int y = (int) Math.round(p.y+l*Math.sin(deg));
+		
+		return new Point(x, y);
+	}
 }
