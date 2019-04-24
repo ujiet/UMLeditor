@@ -22,9 +22,6 @@ public class MyComposite extends MyElements{
 		setComposited(true);
 
 		Groupedby = new ArrayList<MyElements>();
-
-		
-		printComponents();
 	}
 	
 	@Override
@@ -32,13 +29,10 @@ public class MyComposite extends MyElements{
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setPaint(Color.RED);
 		g2d.drawRect(coor.x, coor.y, width, height);
-		g2d.drawString(getName(), coor.x + width - 70, coor.y);
+		g2d.drawString(getName(), coor.x, coor.y);
 		
-		if (isSelected()) {	
-			//g2d.setPaint(Color.BLACK);
-			//g2d.drawRect(coor.x, coor.y, width, height);
+		if (isSelected()) 
 			toSelect(g);
-		}
 	};
 	
 	public void setCompositeEdge() {
@@ -63,10 +57,6 @@ public class MyComposite extends MyElements{
 		setCoor(Xmin, Ymin);
 		setWidth(Math.max(Xmax - Xmin, Ymax - Ymin));
 		setHeight(Math.max(Xmax - Xmin, Ymax - Ymin));
-		
-		// for edge of rectangle
-		// setWidth(Xmax - Xmin);  
-		// setHeight(Ymax - Ymin);
 	}
 	
 	public ArrayList<Integer> getComponents() {
@@ -84,7 +74,6 @@ public class MyComposite extends MyElements{
 				
 				if (e.isComposited()) {
 					ArrayList<Integer> list = ((MyComposite) e).getComponents();
-					System.out.print("list = " + list.toString());
 					for (int c: list) {
 						elements.get(c).Groupedby.add(this);
 					}
@@ -92,7 +81,6 @@ public class MyComposite extends MyElements{
 				}
 			}
 		}
-		System.out.println();
 	}
 	
 	public void printComponents() {

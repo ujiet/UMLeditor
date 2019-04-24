@@ -26,6 +26,7 @@ public class MyClass extends MyElements {
 		g2d.setPaint(Color.BLACK);
 		g2d.drawRect(coor.x, coor.y, width, height);
 		g2d.drawLine(coor.x, coor.y+TextHeight, coor.x+width, coor.y+TextHeight);
+		g2d.drawLine(coor.x, coor.y+TextHeight/2+height/2, coor.x+width, coor.y+TextHeight/2+height/2);
 		g2d.drawString(getName(), coor.x+5, coor.y+TextHeight-4);
 		
 		if (isSelected()) 

@@ -10,8 +10,8 @@ public class MyUseCase extends MyElements {
 	
 	public MyUseCase(Point clickPoint, int i) {
 		coor = clickPoint;
-		width = 160;
-		height = 100;
+		width = 150;
+		height = 80;
 		Selected = false;
 		setIndex(i);
 		setDepth(99-i);
@@ -27,7 +27,7 @@ public class MyUseCase extends MyElements {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setPaint(Color.BLACK);
 		g2d.drawOval(coor.x, coor.y, width, height);
-		g2d.drawString(getName(), coor.x, coor.y);
+		g2d.drawString(getName(), coor.x+45, coor.y+45);
 		
 		setFocus();
 		

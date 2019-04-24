@@ -1,5 +1,6 @@
 package object;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -13,6 +14,7 @@ public class MyCompLine extends MyLines {
 	@Override
 	public void update(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
+		g2d.setPaint(Color.black);
 		
 		Point start = getStartElement().getConnectPoint(getStartDir());
 		Point end;
@@ -27,7 +29,6 @@ public class MyCompLine extends MyLines {
 		Point p1 = getRotatedPoint(start, deg-Math.PI/6.0d, l);
 		Point p2 = getRotatedPoint(start, deg+Math.PI/6.0d, l);
 		Point ps = getRotatedPoint(start, deg, l*Math.sqrt(3));
-		//Point pc = getRotatedPoint(start, deg, l*Math.sqrt(3)/2.0);  // center of diamond
 		
 		int[] Xs = new int[] {start.x, p1.x, ps.x, p2.x};
 		int[] Ys = new int[] {start.y, p1.y, ps.y, p2.y};

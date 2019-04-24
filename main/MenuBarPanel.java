@@ -75,7 +75,8 @@ public class MenuBarPanel extends JMenuBar {
 		if (Objects.getSelectedAmount() == 1) {
 			SelectedIndex = Objects.getFirstSelectedIndex();    			
 			String NewName = JOptionPane.showInputDialog("Enter New Object Name"); 
-			Objects.getElements().get(SelectedIndex).setName(NewName);
+			if (NewName != null)
+				Objects.getElements().get(SelectedIndex).setName(NewName);
 		}
 	}
 

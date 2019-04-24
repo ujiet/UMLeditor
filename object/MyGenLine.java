@@ -1,5 +1,6 @@
 package object;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -13,6 +14,7 @@ public class MyGenLine extends MyLines {
 	@Override
 	public void update(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
+		g2d.setPaint(Color.black);
 		
 		Point start = getStartElement().getConnectPoint(getStartDir());
 		Point end;
@@ -34,6 +36,5 @@ public class MyGenLine extends MyLines {
 		g2d.drawLine(p2.x, p2.y, p1.x, p1.y);
 		
 		g2d.drawLine(ps.x, ps.y, end.x, end.y);
-
 	}
 }

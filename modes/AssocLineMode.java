@@ -27,7 +27,9 @@ public class AssocLineMode {
 	
 	public static void release(Point clickPoint, Point releasePoint, MyObjects Objects) {
 		
-		if (Objects.getTempLine() != null && Objects.getToppestClickedElement(releasePoint) != null) {		
+		MyElements EndElement = Objects.getToppestClickedElement(releasePoint);
+		
+		if (Objects.getTempLine() != null && EndElement != null && Objects.getTempLine().getStartElement() != EndElement) {		
 			Objects.getTempLine().setEnd(releasePoint, Objects.getToppestClickedElement(releasePoint));			
 		} else {
 			Objects.getLines().remove(Objects.getTempLine());
